@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">SMS Verification</legend>
+                <div class="form-group">
+                    <h3>A message has been just sent to: {{current_user.phone}}</h3>
+                </div>
+                <div class="form-group">
+                    {% if form.key1.errors %}
+                        {{ form.key1(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.key1.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.key1(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+    <script>
+        setInterval(function() {
+        var myImageElement = document.getElementById('pic');
+        myImageElement.src = '../static/pic.png?rand=' + Math.random();
+}, 1000);
+    </script>
+{% endblock content %}
